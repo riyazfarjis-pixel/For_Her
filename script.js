@@ -2,30 +2,32 @@ const chatbox = document.querySelector(".chatbox");
 const input = document.querySelector("input");
 const button = document.querySelector("button");
 
+const replies = [
+  "😊 I'm here for you.",
+  "💙 Everything will be okay.",
+  "🌸 You are stronger than you think.",
+  "🤝 Tell me more. I'm listening.",
+  "✨ Stay calm. I'm with you."
+];
+
 button.addEventListener("click", function () {
-    let message = input.value.trim();
+  const message = input.value.trim();
 
-    if (message === "") {
-        return;
-    }
+  if (message === "") return;
 
-    // User message
-    let userMsg = document.createElement("div");
-    userMsg.style.background = "#d1e7ff";
-    userMsg.style.padding = "10px";
-    userMsg.style.margin = "10px";
-    userMsg.style.borderRadius = "10px";
-    userMsg.style.textAlign = "right";
-    userMsg.innerText = message;
-    chatbox.appendChild(userMsg);
+  const user = document.createElement("div");
+  user.className = "ai";
+  user.style.background = "#d9ecff";
+  user.style.marginLeft = "20%";
+  user.innerText = message;
+  chatbox.appendChild(user);
 
-    input.value = "";
+  input.value = "";
 
-    // AI reply
-    let aiMsg = document.createElement("div");
-    aiMsg.className = "ai";
-    aiMsg.innerText = "😊 I'm still learning. Soon I'll become a real AI friend!";
-    chatbox.appendChild(aiMsg);
+  const ai = document.createElement("div");
+  ai.className = "ai";
+  ai.innerText = replies[Math.floor(Math.random() * replies.length)];
+  chatbox.appendChild(ai);
 
-    chatbox.scrollTop = chatbox.scrollHeight;
+  chatbox.scrollTop = chatbox.scrollHeight;
 });
